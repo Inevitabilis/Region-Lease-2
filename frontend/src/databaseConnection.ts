@@ -33,7 +33,8 @@ export async function isAcronymInDatabase(acronym: string) {
   const response = await fetch(url.toString(), {
     method: "GET",
   });
+
   const returnedBoolean: boolean = await response.json();
   return returnedBoolean;
-
 }
+

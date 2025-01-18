@@ -6,12 +6,13 @@ export function allowCrossOrigin(req: Request, res: Response, next: NextFunction
     next();
 }
 
-// export function blockIPs(req: Request, res: Response, next: NextFunction) {
-//     if(req.ip && blockedIPs.includes( req.ip.toString() )) {
-//         res.statusCode(403).send("you have been blocked");
-//         return;
-//     }
+export function blockIPs(req: Request, res: Response, next: NextFunction) {
+    if(req.ip && blockedIPs.includes( req.ip.toString() )) {
+        res.status(403).send("you have been blocked");
+        return;
+    }
+    next();
     
-// }
+}
 
-// const blockedIPs: string[] = ["127.0.0.1"]
+const blockedIPs: string[] = ["127.0.0.1"];

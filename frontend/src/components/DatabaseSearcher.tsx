@@ -8,12 +8,25 @@ export function DatabaseSearcher() {
   return (
     <>
       <p>{currentlabel}</p>
-      <input type="text" onChange={(event) => setAcronym(event.target.value)} placeholder="acronym" />
+      <input
+        type="text"
+        value={acronym}
+        onChange={(event) => {
+          const input = event.target.value;
+          if (input.length < 2) {
+            setLabel("The acronym must be at least two symbols long");
+          } else {
+            setLabel("Find out if your acronym is taken!");
+          }
+          setAcronym(input);
+        }}
+        placeholder="acronym"
+      />
       <button
         type="submit"
+        disabled={acronym.length < 2}
         onClick={async () => {
           if (acronym.length < 2) {
-            setLabel("it's not even two symbols long c'mon you can try better");
             return;
           }
           const result = await isAcronymInDatabase(acronym);

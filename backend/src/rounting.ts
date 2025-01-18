@@ -24,22 +24,24 @@ export function Route(app: express.Express) {
       const acronym = req.query.acronym;
       const regionName = req.query.regionName;
       //getting data from database
-      const regions = fetchEntries((x) => {
+      const regions = fetchEntries((region) => {
         return (
-          (author === undefined || x.author == author) &&
-          (acronym === undefined || x.acronym == acronym) &&
-          (regionName === undefined || x.name == regionName)
+          (author === undefined || region.author == author) &&
+          (acronym === undefined || region.acronym == acronym) &&
+          (regionName === undefined || region.name == regionName)
         );
       });
-      //stripping unnecessary regions off properties
-      const strippedRegions: FrontEndRegion[] = regions.map<FrontEndRegion>((x) => {
-        return { name: x.name, subregions: x.subregions, author: x.author, acronym: x.acronym };
+      //stripping unnecessary properties off regions
+      const strippedRegions: FrontEndRegion[] = regions.map<FrontEndRegion>((region) => {
+        return { name: region.name, subregions: region.subregions, author: region.author, acronym: region.acronym };
       });
 
       res.status(200).send(strippedRegions);
     } catch (e) {
       console.log(e);
     }
+
+    
   });
 }
 

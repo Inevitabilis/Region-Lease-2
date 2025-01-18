@@ -1,8 +1,9 @@
 import express from "express";
-import { allowCrossOrigin} from "./middlewares";
+import { allowCrossOrigin, blockIPs} from "./middlewares";
 import { Route } from "./rounting";
 
 const app = express();
+// app.use(blockIPs);
 app.use(express.json());
 app.use(allowCrossOrigin);
 

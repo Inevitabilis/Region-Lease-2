@@ -1,56 +1,48 @@
-class Region
-{
-	constructor(name: string, acronym: string, subregions: string[], author: string, isVisible: boolean = false)
-	{
-		this.name = name;
-		this.acronym = acronym;
-		this.subregions = subregions;
-		this.isVisible = isVisible;
-		this.author = author;
-	}
-	name: string;
-    acronym: string;
-    subregions: string[];
-	isVisible: boolean = false;
-	author: string
+type Region = {
+  name: string;
+  acronym: string;
+  subregions: string[];
+  isVisible?: boolean;
+  author: string;
+};
 
-}
-
+type RegionPredicate = (region: Region) => boolean;
 
 const Database: Region[] = [
-	new Region("amogus", "am", ["the vent"], "god", true),
-	new Region("half life whatsapp", "hl", ["the ring", "the call", "the hangup"], "gaben", true),
-	new Region("fortnite", "fn", [], "epic gay", true),
-	new Region("transpog.gay", "tr", [], "wack", true),
-	new Region("#building", "bd", ["drama", "criticism", "detrax"], "kali", true),
-
+  { name: "amogus", acronym: "am", subregions: ["the vent"], author: "god", isVisible: true },
+  {
+    name: "half life whatsapp",
+    acronym: "hl",
+    subregions: ["the ring", "the call", "the hangup"],
+    author: "gaben",
+    isVisible: true,
+  },
+  { name: "fortnite", acronym: "fn", subregions: [], author: "epic gay", isVisible: true },
+  { name: "transpog.gay", acronym: "tr", subregions: [], author: "wack", isVisible: true },
+  {
+    name: "#building",
+    acronym: "bd",
+    subregions: ["drama", "criticism", "detrax"],
+    author: "kali",
+    isVisible: true,
+  },
 ];
 
 //public data
 export function isAcronymInDatabase(acronym: string): boolean {
-	return Database.some(x => x.acronym.toUpperCase() == acronym.toUpperCase());
-}
-//public data
-export function isInDatabase(predicate: (arg0: Region) => boolean, requester: string | undefined = undefined): boolean {
-	return !!fetchFromDatabase(predicate, requester)
+  return Database.some((region) => region.acronym.toUpperCase() == acronym.toUpperCase());
 }
 
-//private data
-export function fetchEntries(predicate: (arg0: Region) => boolean, requester: string | undefined = undefined): Region[] {
-	return Database.filter(x => predicate(x) && isValidForShowing(x, requester));
+/** returns publicly available regions */
+export function fetchEntries(
+  predicate: RegionPredicate,
+  requester: string | undefined = undefined,
+): Region[] {
+  return Database.filter((region) => isValidForShowing(region, requester) && predicate(region));
 }
 
-//public data
-function fetchFromDatabase(predicate: (arg0: Region) => boolean, requester: string | undefined): Region | undefined {
-	
-	const region = Database.find(predicate);
-
-	if(region && isValidForShowing(region, requester)) return region;
-	return undefined;
-}
 //filter
-function isValidForShowing(region: Region, requester: string | undefined) : boolean
-{
-
-	return region.isVisible || (requester !== undefined && region.author == requester);
+function isValidForShowing(region: Region, requester: string | undefined): boolean {
+  return region.isVisible || (requester !== undefined && region.author == requester);
 }
+

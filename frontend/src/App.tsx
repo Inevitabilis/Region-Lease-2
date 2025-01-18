@@ -1,6 +1,6 @@
 import "./App.css";
-import { RegionTable } from "./components/RegionTable";
 import { DatabaseSearcher } from "./components/DatabaseSearcher";
+import { RegionTable } from "./components/RegionTable";
 
 export function App() {
   return (
@@ -8,10 +8,7 @@ export function App() {
       <div>
         <DatabaseSearcher />
       </div>
-      <div>
-        <RegionTable />
-      </div>
+      <RegionTable />
     </>
   );
 }
-

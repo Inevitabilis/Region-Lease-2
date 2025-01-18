@@ -1,56 +1,31 @@
 import { useState, useEffect } from "react";
 import { getRegions } from "../databaseConnection";
 import { Region } from "../databaseConnection";
+import { Table } from "./Table";
 
 export function RegionTable() {
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>region</th>
-          <th>acronym</th>
-          <th>author</th>
-          <th>subregions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <TableRows />
-      </tbody>
-    </table>
-  );
-}
+  const [tableData, setData] = useState<Region[]>([]);
 
-function TableRows() {
-  const [tableDataRef, setdata] = useState<Region[]>([]);
-  async function updateTable() {
-    const result = await getRegions({});
-    setdata(result);
-  }
+  const updateTable = async () => setData(await getRegions({}));
+
   useEffect(() => {
     updateTable();
   }, []);
-  return tableDataRef.map((region) => {
-    return (
-      <tr key={region.name}>
-        <td>{region.name}</td>
-        <td>{region.acronym}</td>
-        <td>{region.author}</td>
-        <td>
-          <DisplaySubregions subregions = {region.subregions} />
-        </td>
-      </tr>
-    );
-  });
-}
 
-type subregionsContainer = {
-  subregions: string[]
-}
-
-function DisplaySubregions({subregions}: subregionsContainer)
-{
-  return subregions.map((subregion) => {
-    return <p key = {subregion}>{subregion}</p>
-  });
+  return (
+    <Table
+      data={tableData}
+      columns={[
+        { key: "name", header: "Region name" },
+        { key: "acronym", header: "Acronym" },
+        { key: "author", header: "Author" },
+        {
+          key: "subregions",
+          header: "Subregions",
+          render: (region) => region.subregions.map((subregion) => <p>{subregion}</p>),
+        },
+      ]}
+    />
+  );
 }
 
