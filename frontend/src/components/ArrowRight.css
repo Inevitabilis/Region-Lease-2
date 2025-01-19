@@ -1,0 +1,13 @@
+.arrow-close {
+    transform: rotate(90deg);
+    position: relative;
+    float: right;
+}
+.arrow {
+    transition-duration: 0.1s;
+    transition-property: transform;
+}
+.arrow-open {
+    float: right;
+    transform: rotate(0deg);
+}

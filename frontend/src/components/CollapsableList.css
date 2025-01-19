@@ -1,0 +1,24 @@
+.collapse {
+  display: flex;
+  max-width: 200px;
+  white-space: nowrap;
+}
+
+.collapse.close {
+  flex-direction: row;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.collapse.close span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
+}
+.collapse.open {
+  flex-direction: column;
+}
+
+
+

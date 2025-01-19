@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getRegions } from "../databaseConnection";
 import { Region } from "../databaseConnection";
 import { Table } from "./Table";
+import { CollapsableList } from "./CollapsableList";
 
 export function RegionTable() {
   const [tableData, setData] = useState<Region[]>([]);
@@ -22,7 +23,8 @@ export function RegionTable() {
         {
           key: "subregions",
           header: "Subregions",
-          render: (region) => region.subregions.map((subregion) => <p>{subregion}</p>),
+          // render: (region) => region.subregions.map((subregion) => <p>{subregion}</p>),
+          render: (region) => (!!region.subregions.length && <CollapsableList array={region.subregions}/>)
         },
       ]}
     />
