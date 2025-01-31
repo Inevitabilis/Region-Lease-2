@@ -26,6 +26,27 @@ const Database: Region[] = [
     author: "kali",
     isVisible: true,
   },
+  {
+    name: "job",
+    acronym: "jb",
+    subregions: [],
+    author: "aira",
+    isVisible: true,
+  },
+  {
+    name: "black grug",
+    acronym: "bg",
+    subregions: [],
+    author: "wack",
+    isVisible: true,
+  },
+  {
+    name: "modhole",
+    acronym: "mh",
+    subregions: ["building", "wetcode", "uncat-relevant"],
+    author: "henpemaz",
+    isVisible: true,
+  }
 ];
 
 //public data
