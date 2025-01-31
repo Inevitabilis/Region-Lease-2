@@ -22,7 +22,7 @@ export function RegionTable() {
   const paginationOptions = [5, 10, 50];
 
   return (
-    <div id="table-container">
+    <>
       <Table
         data={tableData}
         columns={[
@@ -42,7 +42,7 @@ export function RegionTable() {
 
       <div id="region-table-footer">
         <div onClick={async () => setFirstItemIndexOnPage(Math.max(0, firstItemIndexOnPage - itemsPerPage))}>
-          <ArrowRight className="arrow-left" />
+          <ArrowRight className="arrow-left" scale={5} />
         </div>
 
         <div>
@@ -64,10 +64,10 @@ export function RegionTable() {
             )
           }
         >
-          <ArrowRight />
+          <ArrowRight scale={5} />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
