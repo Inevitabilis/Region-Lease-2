@@ -48,6 +48,7 @@ export function RegionTable() {
         ]}
         currentPageFirstItemIndex={firstItemIndexOnPage}
         itemsPerPage={itemsPerPage}
+        keyField="id"
       />
 
       <div id="region-table-footer">

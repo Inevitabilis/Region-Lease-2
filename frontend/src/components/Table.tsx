@@ -11,14 +11,19 @@ type MapFields<T> = {
 
 type TableProps<T extends Record<string, unknown>> = {
   columns: MapFields<T>[];
+  keyField: KeyFields<T>;
   data: T[];
   itemsPerPage?: number;
   currentPageFirstItemIndex?: number;
 };
 
+type KeyFields<T> = {
+  [K in keyof T]: T[K] extends string | number ? K : never;
+}[keyof T];
+
 export class Table<T extends Record<string, unknown>> extends Component<TableProps<T>> {
   render() {
-    const { columns, data, currentPageFirstItemIndex, itemsPerPage } = this.props;
+    const { columns, data, currentPageFirstItemIndex, itemsPerPage, keyField } = this.props;
     const defaultFirstItemIndex = 0;
     const defaultItemsPerPage = 5;
     return (
@@ -36,8 +41,8 @@ export class Table<T extends Record<string, unknown>> extends Component<TablePro
               currentPageFirstItemIndex ?? defaultFirstItemIndex,
               (currentPageFirstItemIndex ?? defaultFirstItemIndex) + (itemsPerPage ?? defaultItemsPerPage),
             )
-            .map((entry, index) => (
-              <tr key={index}>
+            .map((entry) => (
+              <tr key={entry[keyField] as string | number}>
                 {columns.map(({ key, render }, index) => (
                   <td key={index}>{render ? render(entry) : (entry[key] as string | number)}</td>
                 ))}

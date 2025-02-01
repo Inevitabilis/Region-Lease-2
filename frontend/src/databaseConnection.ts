@@ -1,6 +1,7 @@
 const backendAddress: string = "http://127.0.0.1:3000";
 
 export type Region = {
+  id: number
   name: string;
   acronym: string;
   subregions: string[];

@@ -9,13 +9,11 @@ type CollapsableListProps = {
 
 type CollapsableState = {
   isOpen: boolean;
-  currentArray: string[];
 };
 
 export class CollapsableList extends Component<CollapsableListProps> {
-  state: CollapsableState = {
+  state: Readonly<CollapsableState> = {
     isOpen: false,
-    currentArray: [],
   };
 
   collapsedList = () => this.props.array.join(", ");
@@ -24,10 +22,6 @@ export class CollapsableList extends Component<CollapsableListProps> {
     this.setState({ isOpen: !this.state.isOpen });
   };
   render() {
-    if (this.state.currentArray != this.props.array) {
-      this.state.currentArray = this.props.array;
-      this.state.isOpen = false;
-    }
     return this.state.isOpen ? (
       <>
         <ArrowRight className="arrow-open" />
