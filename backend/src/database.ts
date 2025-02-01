@@ -1,4 +1,5 @@
 type Region = {
+  id: number;
   name: string;
   acronym: string;
   subregions: string[];
@@ -9,17 +10,19 @@ type Region = {
 type RegionPredicate = (region: Region) => boolean;
 
 const Database: Region[] = [
-  { name: "amogus", acronym: "am", subregions: ["the vent"], author: "god", isVisible: true },
+  { id: 1, name: "amogus", acronym: "am", subregions: ["the vent"], author: "god", isVisible: true },
   {
+    id: 2,
     name: "half life whatsapp",
     acronym: "hl",
     subregions: ["the ring", "the call", "the hangup"],
     author: "gaben",
     isVisible: true,
   },
-  { name: "fortnite", acronym: "fn", subregions: [], author: "epic gay", isVisible: true },
-  { name: "transpog.gay", acronym: "tr", subregions: [], author: "wack", isVisible: true },
+  { id: 3, name: "fortnite", acronym: "fn", subregions: [], author: "epic gay", isVisible: true },
+  { id: 4, name: "transpog.gay", acronym: "tr", subregions: [], author: "wack", isVisible: true },
   {
+    id: 5,
     name: "#building",
     acronym: "bd",
     subregions: ["drama", "criticism", "detrax"],
@@ -27,6 +30,7 @@ const Database: Region[] = [
     isVisible: true,
   },
   {
+    id: 6,
     name: "job",
     acronym: "jb",
     subregions: [],
@@ -34,6 +38,7 @@ const Database: Region[] = [
     isVisible: true,
   },
   {
+    id: 7,
     name: "black grug",
     acronym: "bg",
     subregions: [],
@@ -41,6 +46,7 @@ const Database: Region[] = [
     isVisible: true,
   },
   {
+    id: 8,
     name: "modhole",
     acronym: "mh",
     subregions: ["building", "wetcode", "uncat-relevant"],

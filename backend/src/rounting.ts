@@ -33,7 +33,7 @@ export function Route(app: express.Express) {
       });
       //stripping unnecessary properties off regions
       const strippedRegions: FrontEndRegion[] = regions.map<FrontEndRegion>((region) => {
-        return { name: region.name, subregions: region.subregions, author: region.author, acronym: region.acronym };
+        return { id: region.id, name: region.name, subregions: region.subregions, author: region.author, acronym: region.acronym };
       });
 
       res.status(200).send(strippedRegions);
@@ -46,6 +46,7 @@ export function Route(app: express.Express) {
 }
 
 type FrontEndRegion = {
+  id: number
   name: string;
   subregions: string[];
   author: string;
