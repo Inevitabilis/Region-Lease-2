@@ -10,3 +10,7 @@ table {
     border-collapse: collapse;
     margin: 16px
 }
+#page-selection {
+    align-items: center;
+    display: flex;
+  }
