@@ -33,7 +33,14 @@ export function RegionTable() {
             key: "subregions",
             header: "Subregions",
             // render: (region) => region.subregions.map((subregion) => <p>{subregion}</p>),
-            render: (region) => !!region.subregions.length && <CollapsableList array={region.subregions} />,
+            render: (region) => {
+              switch(region.subregions.length)
+              {
+                case 0: return;
+                case 1: return <p>{region.subregions[0]}</p>
+                default: return <CollapsableList array={region.subregions} />
+              }
+            },
           },
         ]}
         currentPageFirstItemIndex={firstItemIndexOnPage}
