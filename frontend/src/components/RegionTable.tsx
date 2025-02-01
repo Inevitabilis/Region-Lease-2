@@ -5,6 +5,7 @@ import { Table } from "./Table";
 import { CollapsableList } from "./CollapsableList";
 import { ArrowRight } from "./ArrowRight";
 import "./RegionTable.css";
+import { clamp } from "../utils/MathUtils";
 
 export function RegionTable() {
   const [tableData, setData] = useState<Region[]>([]);
@@ -34,11 +35,13 @@ export function RegionTable() {
             header: "Subregions",
             // render: (region) => region.subregions.map((subregion) => <p>{subregion}</p>),
             render: (region) => {
-              switch(region.subregions.length)
-              {
-                case 0: return;
-                case 1: return <p>{region.subregions[0]}</p>
-                default: return <CollapsableList array={region.subregions} />
+              switch (region.subregions.length) {
+                case 0:
+                  return;
+                case 1:
+                  return <p>{region.subregions[0]}</p>;
+                default:
+                  return <CollapsableList array={region.subregions} />;
               }
             },
           },
@@ -48,31 +51,41 @@ export function RegionTable() {
       />
 
       <div id="region-table-footer">
-        <div onClick={async () => setFirstItemIndexOnPage(Math.max(0, firstItemIndexOnPage - itemsPerPage))}>
+        <div
+          onClick={async () =>
+            setFirstItemIndexOnPage(clamp(firstItemIndexOnPage - itemsPerPage, { bottom: 0 }))
+          }
+        >
           <ArrowRight className="arrow-left pressable" scale={5} />
         </div>
 
-        <div>
-          <p>Items per page:</p>
-          {paginationOptions.map((optionOfItemsPerPage) => (
-            <button
-              key={optionOfItemsPerPage.toString()}
-              onClick={async () => setItemsPerFrame(optionOfItemsPerPage)}
-            >
-              {optionOfItemsPerPage}
-            </button>
-          ))}
+        <div id="page-selection">
+          <p>current page: {Math.ceil(firstItemIndexOnPage / itemsPerPage) + 1}</p>
         </div>
 
         <div
           onClick={async () =>
             setFirstItemIndexOnPage(
-              Math.min(Math.max(tableData.length - itemsPerPage, 0), firstItemIndexOnPage + itemsPerPage),
+              clamp(firstItemIndexOnPage + itemsPerPage, {
+                top: Math.max(tableData.length - itemsPerPage, 0),
+              }),
             )
           }
         >
           <ArrowRight scale={5} className="pressable" />
         </div>
+      </div>
+
+      <div>
+        <p>Items per page:</p>
+        {paginationOptions.map((optionOfItemsPerPage) => (
+          <button
+            key={optionOfItemsPerPage.toString()}
+            onClick={async () => setItemsPerFrame(optionOfItemsPerPage)}
+          >
+            {optionOfItemsPerPage}
+          </button>
+        ))}
       </div>
     </>
   );
