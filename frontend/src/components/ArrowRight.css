@@ -3,10 +3,16 @@
     position: relative;
     float: right;
 }
+.arrow-open {
+    float: right;
+    transform: rotate(0deg);
+}
+
 .arrow {
     transition-duration: 0.1s;
     transition-property: transform;
 }
+
 .arrow-down {
     transform: rotate(90deg);
 }
@@ -17,7 +23,7 @@
     transform: rotate(270deg);
 }
 
-.arrow-open {
-    float: right;
-    transform: rotate(0deg);
+.pressable:hover {
+    cursor:pointer;
+    scale: 1.1 1.1;
 }

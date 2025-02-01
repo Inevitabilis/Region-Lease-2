@@ -42,7 +42,7 @@ export function RegionTable() {
 
       <div id="region-table-footer">
         <div onClick={async () => setFirstItemIndexOnPage(Math.max(0, firstItemIndexOnPage - itemsPerPage))}>
-          <ArrowRight className="arrow-left" scale={5} />
+          <ArrowRight className="arrow-left pressable" scale={5} />
         </div>
 
         <div>
@@ -64,7 +64,7 @@ export function RegionTable() {
             )
           }
         >
-          <ArrowRight scale={5} />
+          <ArrowRight scale={5} className="pressable" />
         </div>
       </div>
     </>
