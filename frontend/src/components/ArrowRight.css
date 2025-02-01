@@ -23,7 +23,9 @@
     transform: rotate(270deg);
 }
 
-.pressable:hover {
+.pressable {
     cursor:pointer;
+}
+.pressable:hover {
     scale: 1.1 1.1;
 }
