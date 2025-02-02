@@ -25,7 +25,7 @@ export function RegionTable() {
   return (
     <>
       <Table
-        data={tableData}
+        data={tableData.slice(firstItemIndexOnPage, firstItemIndexOnPage + itemsPerPage)}
         columns={[
           { key: "acronym", header: "Acronym" },
           { key: "name", header: "Region name" },
@@ -33,7 +33,6 @@ export function RegionTable() {
           {
             key: "subregions",
             header: "Subregions",
-            // render: (region) => region.subregions.map((subregion) => <p>{subregion}</p>),
             render: (region) => {
               switch (region.subregions.length) {
                 case 0:
@@ -46,8 +45,6 @@ export function RegionTable() {
             },
           },
         ]}
-        currentPageFirstItemIndex={firstItemIndexOnPage}
-        itemsPerPage={itemsPerPage}
         keyField="id"
       />
 
