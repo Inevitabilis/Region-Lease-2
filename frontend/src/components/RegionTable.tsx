@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getRegions } from "../databaseConnection";
-import { Region } from "../databaseConnection";
+import type { Region } from "../databaseConnection";
 import { Table } from "./Table";
 import { CollapsableList } from "./CollapsableList";
 import { ArrowRight } from "./ArrowRight";
@@ -39,8 +39,8 @@ export function RegionTable() {
                 document.getElementById(region.name)?.hidePopover()
               }}
               >
-                <RegionPopover PopoverID={region.name}></RegionPopover>
-                <p popovertarget={region.name}>{region.name}</p>
+                <RegionPopover popoverID={region.name}></RegionPopover>
+                <p popoverTarget={region.name}>{region.name}</p>
               </div>
             }
           },
