@@ -1,31 +1,31 @@
 .arrow-close {
-    transform: rotate(90deg);
-    position: relative;
-    float: right;
+  transform: rotate(90deg);
+  position: relative;
+  float: right;
 }
 .arrow-open {
-    float: right;
-    transform: rotate(0deg);
+  float: right;
+  transform: rotate(0deg);
 }
 
 .arrow {
-    transition-duration: 0.1s;
-    transition-property: transform;
+  transition-duration: 0.1s;
+  transition-property: transform;
 }
 
 .arrow-down {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 .arrow-left {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .arrow-up {
-    transform: rotate(270deg);
+  transform: rotate(270deg);
 }
 
 .pressable {
-    cursor:pointer;
+  cursor: pointer;
 }
 .pressable:hover {
-    scale: 1.1 1.1;
+  scale: 1.1 1.1;
 }

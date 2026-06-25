@@ -1,16 +1,17 @@
 td {
-    text-align: left;
+  text-align: left;
 }
-th, td {
-    padding: 4px 8px;
-    border: solid 1px;
+th,
+td {
+  padding: 4px 8px;
+  border: solid 1px;
 }
 table {
-    border: solid 2px;
-    border-collapse: collapse;
-    margin: 16px
+  border: solid 2px;
+  border-collapse: collapse;
+  margin: 16px;
 }
 #page-selection {
-    align-items: center;
-    display: flex;
-  }
+  align-items: center;
+  display: flex;
+}

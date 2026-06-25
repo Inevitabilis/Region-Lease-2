@@ -29,26 +29,30 @@ export function RegionTable() {
         data={tableData.slice(firstItemIndexOnPage, firstItemIndexOnPage + itemsPerPage)}
         columns={[
           { key: "acronym", header: "Acronym" },
-          { key: "name", header: "Region name",
-            render: (region : Region) => {
-              return <div 
-              onMouseEnter = {() => {
-                document.getElementById(region.name)?.showPopover()
-              }}
-              onMouseLeave={() => {
-                document.getElementById(region.name)?.hidePopover()
-              }}
-              >
-                <RegionPopover popoverID={region.name}></RegionPopover>
-                <p popoverTarget={region.name}>{region.name}</p>
-              </div>
-            }
+          {
+            key: "name",
+            header: "Region name",
+            render: (region: Region) => {
+              return (
+                <div
+                  onMouseEnter={() => {
+                    document.getElementById(region.name)?.showPopover();
+                  }}
+                  onMouseLeave={() => {
+                    document.getElementById(region.name)?.hidePopover();
+                  }}
+                >
+                  <RegionPopover popoverID={region.name}></RegionPopover>
+                  <p popoverTarget={region.name}>{region.name}</p>
+                </div>
+              );
+            },
           },
           { key: "author", header: "Author" },
           {
             key: "subregions",
             header: "Subregions",
-            render: (region : Region) => {
+            render: (region: Region) => {
               switch (region.subregions.length) {
                 case 0:
                   return;
@@ -103,4 +107,3 @@ export function RegionTable() {
     </>
   );
 }
-

@@ -1,4 +1,4 @@
-import { Component, ReactNode } from "react";
+import { Component, type ReactNode } from "react";
 import "./Table.css";
 
 type RenderFn<T> = (value: T) => ReactNode;
@@ -44,4 +44,3 @@ export class Table<T extends Record<string, unknown>> extends Component<TablePro
     );
   }
 }
-
