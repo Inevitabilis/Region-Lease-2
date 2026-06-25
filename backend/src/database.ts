@@ -26,7 +26,7 @@ const Database: Region[] = [
     name: "#building",
     acronym: "bd",
     subregions: ["drama", "criticism", "detrax"],
-    author: "kali",
+    author: "tetraneo",
     isVisible: true,
   },
   {
@@ -50,7 +50,7 @@ const Database: Region[] = [
     name: "modhole",
     acronym: "mh",
     subregions: ["building", "wetcode", "uncat-relevant"],
-    author: "henpemaz",
+    author: "who nose..",
     isVisible: true,
   }
 ];
