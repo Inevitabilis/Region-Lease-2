@@ -1,0 +1,11 @@
+.region-popover{
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  inset: unset;
+    right: unset;
+    bottom: unset;
+  bottom: 5px;
+  right: 5px;
+  margin: 0;
+}
