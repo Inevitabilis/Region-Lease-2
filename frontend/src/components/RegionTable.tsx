@@ -6,7 +6,7 @@ import { CollapsableList } from "./CollapsableList";
 import { ArrowRight } from "./ArrowRight";
 import "./RegionTable.css";
 import { clamp } from "../utils/MathUtils";
-import { RegionPopover } from "./RegionPopover";
+import { StatefulPopover } from "./StatefulPopover";
 
 export function RegionTable() {
   const [tableData, setData] = useState<Region[]>([]);
@@ -34,17 +34,9 @@ export function RegionTable() {
             header: "Region name",
             render: (region: Region) => {
               return (
-                <div
-                  onMouseEnter={() => {
-                    document.getElementById(region.name)?.showPopover();
-                  }}
-                  onMouseLeave={() => {
-                    document.getElementById(region.name)?.hidePopover();
-                  }}
-                >
-                  <RegionPopover popoverID={region.name}></RegionPopover>
-                  <p popoverTarget={region.name}>{region.name}</p>
-                </div>
+                <StatefulPopover content={<div style={{ backgroundColor: "green" }}>{region.name}</div>}>
+                  <p>{region.name}</p>
+                </StatefulPopover>
               );
             },
           },
